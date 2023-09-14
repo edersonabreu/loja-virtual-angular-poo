@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="jumbotron mt-5 ">
+        <h1 class="display-4">Loja virtual</h1>
+        <p class="lead">Projeto desenvolvido com os pilares da Orientação a Objetos</p>
+    </div>
+
+    <h6>Bem vindo: {{usuario.nome}}!</h6>
+
+    <div class="row justify-content-center" *ngIf="!exibirCarrinho">
+        <div class="col-md-3 mb-4" *ngFor="let produto of produtos">
+            <div class="card h-100">
+                <img class="card-img-top p-3" [src]="produto.imagem" alt="Imagem do produto">
+                <div class="card-body">
+                    <h5 class="card-title">{{produto.nome}}</h5>
+                    <p class="card-text">{{produto.descricao}}</p>
+                    <h6 class="card-text text-right">Preço: {{produto.preco | currency: 'BRL': 'symbol': '2.2-2'}}</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary" (click)="adicionarAoCarrinho(produto)">Adicionar ao Carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row justify-content-center" *ngIf="!exibirCarrinho">
+          <!-- ...código para listar produtos... -->
+          <button class="btn btn-success mt-2 mb-4 float-right" (click)="abrirCarrinho()">Comprar</button>
+        </div>
+      
+       <app-carrinho *ngIf="exibirCarrinho"></app-carrinho>
+    </div>
+      
+</div>
